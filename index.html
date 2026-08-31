@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="돌아가신 날짜를 넣으면 사망신고·상속포기·상속세·안심상속 기한이 날짜로 계산되는 무료 장례 후 100일 체크리스트. 기한을 폰 캘린더에 담아 알림을 받으세요.">
+<title>장례 후 100일 — 무료 체크리스트와 기한 계산</title>
+<link rel="canonical" href="https://example.github.io/after100/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="장례 후 100일 — 무엇을 언제 해야 하는지">
+<meta property="og:description" content="돌아가신 날짜만 넣으면 사망신고·상속포기·상속세·안심상속 기한이 날짜로 계산됩니다. 무료.">
+<meta name="robots" content="index,follow">
+<!-- 익명 방문 지표(쿠키 없음). goatcounter 무료 가입 후 아래 CODE만 교체하면 켜집니다. 비워두면 아무 데이터도 수집하지 않습니다. -->
+<script>window.__GC_CODE="";</script>
+<script>if(window.__GC_CODE){var s=document.createElement("script");s.async=true;s.src="//gc.zgo.at/count.js";s.setAttribute("data-goatcounter","https://"+window.__GC_CODE+".goatcounter.com/count");document.head.appendChild(s);}</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #F3F2EE; --surface: #FFFFFF; --surface-2: #EAE9E3; --ink: #23262A; --ink-2: #5B6066; --ink-3: #8A8F95;
+    --line: #D9D8D1; --accent: #2E6A5D; --accent-ink: #FFFFFF; --accent-soft: #E1EEEA;
+    --ok: #2E6A5D; --warn: #B0781F; --warn-soft: #F6EAD2; --crit: #A8433A; --crit-soft: #F5E0DD; --done: #9AA0A6;
+    --shadow: 0 1px 2px rgba(20,24,28,.06), 0 8px 24px -12px rgba(20,24,28,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191C; --surface: #1F2226; --surface-2: #272B30; --ink: #E8E6E1; --ink-2: #B4B8BC; --ink-3: #7F858B;
+      --line: #33383E; --accent: #6FB3A2; --accent-ink: #10201B; --accent-soft: #1F3530;
+      --ok: #6FB3A2; --warn: #D9A24A; --warn-soft: #3A2E17; --crit: #E07B70; --crit-soft: #3E211E; --done: #5C6268;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191C; --surface: #1F2226; --surface-2: #272B30; --ink: #E8E6E1; --ink-2: #B4B8BC; --ink-3: #7F858B;
+    --line: #33383E; --accent: #6FB3A2; --accent-ink: #10201B; --accent-soft: #1F3530;
+    --ok: #6FB3A2; --warn: #D9A24A; --warn-soft: #3A2E17; --crit: #E07B70; --crit-soft: #3E211E; --done: #5C6268;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 40px 20px 96px; }
+  h1, h2, h3 { font-family: "Noto Serif KR", "Nanum Myeongjo", serif; text-wrap: balance; margin: 0; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+  header h1 { font-size: clamp(30px, 5vw, 40px); font-weight: 700; line-height: 1.25; margin-top: 10px; }
+  header p.lead { color: var(--ink-2); margin: 14px 0 0; max-width: 34em; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow); }
+  .date-card { margin-top: 32px; padding: 22px 22px 20px; display: grid; grid-template-columns: 1fr auto; gap: 16px 24px; align-items: end; }
+  @media (max-width: 560px) { .date-card { grid-template-columns: 1fr; } }
+  label.field { display: block; font-size: 13px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+  input[type="date"] { font: inherit; font-size: 18px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); width: 100%; font-variant-numeric: tabular-nums; }
+  input[type="date"]:focus, button:focus-visible, .item:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .today { font-variant-numeric: tabular-nums; }
+  .today .big { font-family: "Noto Serif KR", serif; font-size: 34px; font-weight: 700; line-height: 1; color: var(--accent); }
+  .today .sub { font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+  .date-card .hint { grid-column: 1 / -1; font-size: 13px; color: var(--ink-3); margin: 0; }
+
+  section { margin-top: 44px; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 14px; }
+  .sec-head h2 { font-size: 22px; font-weight: 700; }
+  .sec-head .meta { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+  .deadlines { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 560px) { .deadlines { grid-template-columns: 1fr; } }
+  .dl { padding: 16px 18px; border-left: 4px solid var(--ink-3); display: grid; gap: 4px; }
+  .dl[data-state="soon"] { border-left-color: var(--warn); }
+  .dl[data-state="urgent"] { border-left-color: var(--crit); }
+  .dl[data-state="past"] { border-left-color: var(--done); }
+  .dl[data-state="ok"] { border-left-color: var(--ok); }
+  .dl .name { font-weight: 700; }
+  .dl .date { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: 14px; }
+  .dl .left { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 2px 9px; border-radius: 999px; width: max-content; background: var(--surface-2); color: var(--ink-2); }
+  .dl[data-state="soon"] .left { background: var(--warn-soft); color: var(--warn); }
+  .dl[data-state="urgent"] .left { background: var(--crit-soft); color: var(--crit); }
+  .dl[data-state="past"] .left { background: var(--surface-2); color: var(--ink-3); }
+  .dl[data-state="ok"] .left { background: var(--accent-soft); color: var(--accent); }
+  .dl .why { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
+  .dl.empty { color: var(--ink-3); }
+  .actionbar { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .actionbar .btn.small { background: var(--surface); }
+  .actionbar #icsBtn { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 700; }
+  .act-hint { font-size: 12px; color: var(--ink-3); }
+  .cta .act-hint { display: block; margin-top: 12px; color: var(--accent-ink); opacity: .85; }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); z-index: 50; max-width: calc(100vw - 32px); background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 500; line-height: 1.5; padding: 13px 18px; border-radius: 10px; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; text-align: center; }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) { .toast { transition: opacity .01s; } }
+  @media print { .toast { display: none; } }
+
+  .progress { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 12px 0 10px; margin-top: 44px; }
+  .progress .bar { height: 6px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .progress .fill { height: 100%; width: 0; background: var(--accent); transition: width .3s ease; }
+  .progress .txt { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+  .period { margin-top: 28px; }
+  .period h3 { font-size: 17px; font-weight: 700; display: flex; align-items: baseline; gap: 10px; }
+  .period h3 .range { font-family: "Noto Sans KR", sans-serif; font-size: 13px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .period .note { font-size: 14px; color: var(--ink-2); margin: 4px 0 12px; }
+  .items { display: grid; gap: 8px; }
+  .item { padding: 12px 14px; display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; }
+  .item input { width: 18px; height: 18px; margin: 4px 0 0; accent-color: var(--accent); cursor: pointer; }
+  .item .title { font-weight: 500; cursor: pointer; }
+  .item.done .title { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--done); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .tag { font-size: 12px; padding: 1px 8px; border-radius: 4px; background: var(--surface-2); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .tag.who-self { background: var(--accent-soft); color: var(--accent); }
+  .tag.who-pro { background: var(--warn-soft); color: var(--warn); }
+  .tag.due { font-weight: 500; }
+  .tag.due.urgent { background: var(--crit-soft); color: var(--crit); }
+  .tag.due.soon { background: var(--warn-soft); color: var(--warn); }
+  details { margin-top: 6px; }
+  summary { font-size: 13px; color: var(--ink-3); cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 4px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "＋"; font-size: 12px; }
+  details[open] summary::before { content: "－"; }
+  details .docs { font-size: 14px; color: var(--ink-2); margin: 6px 0 0; padding-left: 0; list-style: none; display: grid; gap: 2px; }
+  details .docs li::before { content: "· "; color: var(--ink-3); }
+
+  .cta { margin-top: 56px; padding: 26px 24px; background: var(--accent); color: var(--accent-ink); border-radius: 10px; }
+  .cta h2 { color: inherit; font-size: 22px; }
+  .cta p { margin: 10px 0 0; opacity: .9; max-width: 34em; }
+  .cta .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .btn { font: inherit; font-weight: 700; padding: 11px 18px; border-radius: 8px; border: 0; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn.primary { background: var(--accent-ink); color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent-ink); border: 1px solid currentColor; font-weight: 500; }
+  .foot { margin-top: 36px; font-size: 13px; color: var(--ink-3); line-height: 1.7; }
+  .foot p { margin: 0 0 8px; }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .btn.small { font-size: 13px; padding: 7px 12px; background: var(--surface); color: var(--ink-2); border: 1px solid var(--line); font-weight: 500; }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .progress { position: static; }
+    .cta, .tools, .date-card .hint { display: none; }
+    .card { box-shadow: none; }
+    details { display: block; } details summary { display: none; } details .docs { display: grid; }
+  }
+  @media (prefers-reduced-motion: reduce) { .progress .fill { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">부모님을 떠나보낸 뒤</div>
+    <h1>장례 후 100일, 무엇을 언제 해야 하는지</h1>
+    <p class="lead">돌아가신 날짜를 넣으면 이 집의 기한이 날짜로 계산됩니다. 순서대로 하나씩 지우면 됩니다. 급하지 않은 것은 급하지 않다고 적어 두었습니다.</p>
+  </header>
+
+  <div class="card date-card">
+    <div>
+      <label class="field" for="dod">돌아가신 날</label>
+      <input type="date" id="dod">
+    </div>
+    <div class="today" id="todayBox" hidden>
+      <div class="big" id="dplus">D+0</div>
+      <div class="sub" id="todayStr"></div>
+    </div>
+    <p class="hint">이 페이지는 이 기기 안에만 저장됩니다. 다른 곳으로 보내지 않습니다.</p>
+  </div>
+
+  <section id="deadlineSec">
+    <div class="sec-head">
+      <h2>놓치면 돈이 새는 기한</h2>
+      <span class="meta" id="dlMeta">날짜를 넣으면 계산됩니다</span>
+    </div>
+    <div class="deadlines" id="deadlines"></div>
+  </section>
+
+  <div class="progress" id="progress">
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="txt"><span id="progTxt">0 / 0 완료</span><span id="progPct">0%</span></div>
+  </div>
+
+  <div id="periods"></div>
+
+  <div class="cta">
+    <h2>이 페이지를 저장해 두세요</h2>
+    <p>한 번에 다 하는 일이 아닙니다. 링크를 나에게 보내 두고, 기한을 캘린더에 담아 두면 필요한 날 알림이 옵니다. 체크한 내용은 이 기기 안에 그대로 남습니다.</p>
+    <div class="btns">
+      <button class="btn primary" type="button" id="icsBtn">기한을 내 캘린더에 담기 (7일 전 알림)</button>
+      <button class="btn ghost" type="button" id="shareBtn">이 페이지 공유 / 나에게 보내기</button>
+      <button class="btn ghost" type="button" id="printBtn">이 목록 인쇄하기</button>
+    </div>
+    <span class="act-hint" id="actHint"></span>
+  </div>
+
+  <div class="foot">
+    <p>기한은 법령을 기준으로 계산한 것이며, 기관과 상황에 따라 다를 수 있습니다. 상속등기·세금 신고·법률 판단은 법무사·세무사·변호사가, 관공서 제출 서류의 작성·제출 대행은 행정사가 맡는 영역입니다. 이 페이지는 순서와 기한을 안내합니다.</p>
+    <p>기준 자료: 정부24 안심상속 원스톱 서비스, 민법 제1019조, 상속세 및 증여세법 제67조, 통신 3사 사망 해지 약관.</p>
+    <div class="tools">
+      <button class="btn small" type="button" id="resetBtn">체크 초기화</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = "after100.v1";
+  var $ = function (s) { return document.querySelector(s); };
+
+  // ---- data ----
+  var DEADLINES = [
+    { id: "report", doneKey: "report", name: "사망신고", calc: function (d) { return addMonths(d, 1); }, why: "사망 사실을 안 날부터 1개월. 주민센터에서 안심상속 조회와 같이 신청하면 한 번에 끝납니다." },
+    { id: "renounce", doneKey: "decide", name: "상속포기 · 한정승인", calc: function (d) { return addMonths(d, 3); }, why: "상속개시를 안 날부터 3개월. 빚이 재산보다 많을 수 있으면 이 날짜 전에 가정법원에 신청해야 합니다." },
+    { id: "tax", doneKey: "tax", name: "상속세 신고", calc: function (d) { return addMonths(endOfMonth(d), 6); }, why: "사망일이 속한 달의 말일부터 6개월. 넘기면 가산세가 붙습니다. 세무사가 맡는 영역입니다." },
+    { id: "safe", doneKey: "report", name: "안심상속 조회 신청", calc: function (d) { return addMonths(endOfMonth(d), 12); }, why: "사망일이 속한 달의 말일부터 1년. 넘기면 기관마다 따로 조회해야 해서 몇 달이 걸립니다." }
+  ];
+
+  var PERIODS = [
+    { id: "p0", title: "장례 직후", from: 0, to: 7, note: "지금은 두 가지만 하면 됩니다. 서류를 모으고, 진단서를 넉넉히 받아 두는 것.", items: [
+      { id: "cert", t: "사망진단서(시체검안서) 10부 이상 받아두기", who: "self", docs: ["병원 또는 장례식장에서 발급", "은행·보험·통신·관공서마다 원본을 요구하는 곳이 있습니다"] },
+      { id: "box", t: "고인의 신분증·도장·통장·카드·보험증권·부동산 서류·차량 서류를 상자 하나에 모으기", who: "self", docs: ["찾지 못한 것은 안심상속 조회로 대부분 나옵니다"] },
+      { id: "receipt", t: "장례비 영수증·계약서 보관하기", who: "self", docs: ["상속세 계산 때 공제됩니다. 상조·장례식장·화장장 영수증 전부"] },
+      { id: "autopay", t: "고인 통장에서 자동으로 빠져나가는 것 적어두기", who: "self", docs: ["통장·카드 명세에서 보험료·통신·공과금·구독을 찾습니다", "지금 당장 해지할 필요는 없습니다. 목록만"] }
+    ]},
+    { id: "p1", title: "첫 한 달", from: 7, to: 30, note: "관공서 한 번, 통신사 한 번, 은행은 아직입니다.", items: [
+      { id: "report", t: "사망신고 — 안심상속 원스톱 조회를 같이 신청", who: "self", dl: "report", docs: ["사망진단서 1부", "신고인 신분증", "고인의 가족관계를 확인할 수 있는 서류(주민센터에서 확인 가능)", "안심상속은 1·2순위 상속인과 배우자가 신청. 결과는 자동차·부동산·지방세 7일, 금융·국세 20일"] },
+      { id: "phone", t: "휴대폰·인터넷·TV 해지", who: "self", docs: ["사망진단서 원본, 기본증명서(상세), 가족관계증명서, 신청인 신분증", "매장 방문 필요. 사망 해지는 통신 3사 모두 약정 위약금 면제", "남은 단말기 할부금은 고인의 빚으로 남습니다(상속 판단 시 포함)"] },
+      { id: "card", t: "신용카드 해지와 자동이체 정리", who: "self", docs: ["사망 증빙, 가족관계증명서, 대리 시 위임장", "카드사 고객센터에서 사망 접수 후 안내받습니다"] },
+      { id: "subs", t: "구독·멤버십·회원권·정기배송 해지", who: "self", docs: ["p0에서 적어둔 자동이체 목록대로", "앱 결제는 스토어 계정에서 확인"] },
+      { id: "pension", t: "건강보험 자격상실 · 국민연금 사망 신고와 유족연금·사망일시금 확인", who: "self", docs: ["사망 증빙, 가족관계증명서, 받을 사람 통장", "연금 청구는 5년 안에 하면 되지만, 한 달 안에 접수해 두면 잊지 않습니다"] },
+      { id: "insur", t: "보험금 청구", who: "self", docs: ["청구서, 사망진단서, 가족관계증명서, 수익자 통장", "안심상속 결과에 몰랐던 보험이 나오는 경우가 많습니다. 결과가 온 뒤 다시 확인", "청구권 소멸시효 3년"] },
+      { id: "util", t: "전기·가스·수도·관리비 명의변경 또는 해지", who: "self", docs: ["사망 증빙, 대리 시 위임장", "집을 계속 쓰면 명의변경, 비우면 해지"] }
+    ]},
+    { id: "p2", title: "첫 석 달", from: 30, to: 90, note: "재산과 빚의 그림이 보이는 시기입니다. 이 시기의 결정이 가장 중요합니다.", items: [
+      { id: "result", t: "안심상속 조회 결과 받기 (금융·국세는 각 기관 홈페이지에서 확인)", who: "self", docs: ["자동차·부동산·지방세는 문자·우편", "예금·보험·증권·대출·카드채무는 금융감독원 상속인조회 화면", "국세는 홈택스"] },
+      { id: "decide", t: "재산과 빚을 표로 정리하고 단순승인 / 한정승인 / 상속포기 결정", who: "pro", pt: "변호사", dl: "renounce", docs: ["빚이 재산보다 많거나 불확실하면 변호사 상담", "3개월 안에 가정법원에 신청해야 합니다. 이 날짜만은 반드시"] },
+      { id: "bank", t: "은행 예금 찾기", who: "self", docs: ["고인 기본증명서, 가족관계증명서(상세)", "방문자 신분증·인감, 오지 않는 상속인의 인감증명서와 인감 찍힌 위임장·동의서", "100만 원 이하 소액은 대표 상속인 혼자 가능한 은행이 많습니다. 방문 전 전화 확인"] },
+      { id: "car", t: "자동차 이전 또는 폐차", who: "self", docs: ["자동차등록증, 상속 증빙 서류, 이전받는 사람의 보험 가입", "상속개시일부터 3~6개월(관할 확인). 자동차보험 명의부터 정리"] },
+      { id: "lease", t: "임대차 정리 — 보증금 반환, 집 비우기, 관리비 정산", who: "self", docs: ["임대차계약서", "집주인과 날짜 협의. 유품 정리 일정과 맞춥니다"] },
+      { id: "stuff", t: "유품 정리", who: "self", docs: ["업체를 쓴다면 3곳 견적 비교", "사진·편지·서류는 버리기 전에 한 번 더 확인"] },
+      { id: "digital", t: "휴대폰·이메일·사진·클라우드·SNS 정리", who: "self", docs: ["사진과 클라우드는 삭제 전에 반드시 백업", "구글·애플·네이버·카카오 모두 사망자 계정 처리 절차가 따로 있습니다"] }
+    ]},
+    { id: "p3", title: "반년까지", from: 90, to: 180, note: "전문가가 맡는 영역입니다. 자료를 챙겨 주는 것이 가족의 일입니다.", items: [
+      { id: "tax", t: "상속세 신고·납부", who: "pro", pt: "세무사", dl: "tax", docs: ["세무사에게: 안심상속 결과, 부동산 서류, 장례비 영수증, 빚 자료", "재산이 적어 세금이 없어도 신고해 두면 나중에 편합니다"] },
+      { id: "acq", t: "취득세 신고 (부동산을 상속받은 경우)", who: "pro", pt: "세무사·법무사", docs: ["세무사 또는 법무사가 상속등기와 함께 처리하는 경우가 많습니다"] },
+      { id: "reg", t: "부동산 상속등기", who: "pro", pt: "법무사", docs: ["법무사에게: 상속인 전원의 서류", "기한은 없지만 팔거나 담보로 쓰려면 먼저 해야 합니다"] }
+    ]},
+    { id: "p4", title: "100일 즈음", from: 90, to: 100, note: "빠진 것이 없는지 한 바퀴 돌아보는 시기입니다.", items: [
+      { id: "refund", t: "국세·지방세 환급금, 휴면예금, 미청구 보험금 다시 확인", who: "self", docs: ["안심상속 결과에 '환급'으로 표시된 항목", "휴면예금은 금융감독원 '내계좌한눈에'"] },
+      { id: "rest", t: "가족이 쉬는 날 정하기", who: "self", docs: ["이 목록을 여기까지 지운 분은 충분히 하셨습니다"] }
+    ]}
+  ];
+
+  // ---- date utils ----
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function fmt(d) { return d.getFullYear() + "." + pad(d.getMonth() + 1) + "." + pad(d.getDate()); }
+  function endOfMonth(d) { return new Date(d.getFullYear(), d.getMonth() + 1, 0); }
+  function addMonths(d, m) { var r = new Date(d.getFullYear(), d.getMonth() + m, d.getDate()); if (r.getDate() !== d.getDate()) r = new Date(r.getFullYear(), r.getMonth(), 0); return r; }
+  function addDays(d, n) { var r = new Date(d); r.setDate(r.getDate() + n); return r; }
+  function daysBetween(a, b) { return Math.round((startOf(b) - startOf(a)) / 86400000); }
+  function startOf(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function parseISO(s) { if (!s) return null; var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+
+  // ---- state ----
+  var state = { dod: "", done: {} };
+  try { var raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  // 익명 이벤트 집계(개인정보·날짜는 절대 보내지 않음). goatcounter 없으면 조용히 무시.
+  function track(name) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: "evt-" + name, title: name, event: true }); } catch (e) {} }
+
+  var dodInput = $("#dod");
+  dodInput.value = state.dod || "";
+  var dodTracked = false;
+  dodInput.addEventListener("change", function () {
+    state.dod = dodInput.value; save(); render();
+    if (dodInput.value && !dodTracked) { track("date-entered"); dodTracked = true; }
+  });
+  $("#printBtn").addEventListener("click", function () { track("print"); window.print(); });
+  $("#resetBtn").addEventListener("click", function () { state.done = {}; save(); render(); });
+  $("#icsBtn").addEventListener("click", downloadIcs);
+  $("#shareBtn").addEventListener("click", share);
+
+  function share() {
+    track("share");
+    var url = location.href.split("#")[0];
+    var data = { title: "장례 후 100일 체크리스트", text: "장례 후 100일 동안 할 일과 기한을 정리한 무료 체크리스트입니다.", url: url };
+    if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { hint("링크를 복사했습니다. 카톡 '나에게 보내기'에 붙여넣으세요."); },
+        function () { window.prompt("아래 링크를 복사해 나에게 보내세요", url); });
+    } else { window.prompt("아래 링크를 복사해 나에게 보내세요", url); }
+  }
+
+  function icsDate(d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); }
+  function esc(s) { return String(s).replace(/([,;\\])/g, "\\$1").replace(/\n/g, "\\n"); }
+  function downloadIcs() {
+    var dod = parseISO(state.dod); if (!dod) { hint("먼저 돌아가신 날을 넣어 주세요."); return; }
+    track("calendar");
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//after100//KR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+    var stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    DEADLINES.forEach(function (dl, i) {
+      var due = dl.calc(dod), end = addDays(due, 1);
+      lines.push("BEGIN:VEVENT",
+        "UID:after100-" + i + "-" + icsDate(due) + "@local",
+        "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + icsDate(due),
+        "DTEND;VALUE=DATE:" + icsDate(end),
+        "SUMMARY:" + esc("[기한] " + dl.name),
+        "DESCRIPTION:" + esc(dl.why),
+        "BEGIN:VALARM", "TRIGGER:-P7D", "ACTION:DISPLAY", "DESCRIPTION:" + esc(dl.name + " 기한 7일 전"), "END:VALARM",
+        "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:" + esc(dl.name + " 기한 내일"), "END:VALARM",
+        "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "장례후100일_기한.ics";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(a.href); }, 1000);
+    hint("캘린더 파일을 받았습니다. 열면 4개 기한이 폰 캘린더에 등록됩니다.");
+  }
+  var hintTimer, toastEl;
+  function hint(msg) {
+    $("#actHint").textContent = msg;
+    if (!toastEl) { toastEl = document.createElement("div"); toastEl.className = "toast"; document.body.appendChild(toastEl); }
+    toastEl.textContent = msg; toastEl.classList.add("show");
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(function () { toastEl.classList.remove("show"); $("#actHint").textContent = ""; }, 5000);
+  }
+
+  function stateFor(left, doneFlag) {
+    if (doneFlag) return "past";
+    if (left < 0) return "past";
+    if (left <= 7) return "urgent";
+    if (left <= 30) return "soon";
+    return "ok";
+  }
+  function leftLabel(left) {
+    if (left < 0) return "지남 · " + Math.abs(left) + "일 전";
+    if (left === 0) return "오늘까지";
+    return left + "일 남음";
+  }
+
+  function render() {
+    var dod = parseISO(state.dod);
+    var today = startOf(new Date());
+    var tb = $("#todayBox");
+    if (dod) {
+      tb.hidden = false;
+      $("#dplus").textContent = "D+" + daysBetween(dod, today);
+      $("#todayStr").textContent = "오늘 " + fmt(today);
+      $("#dlMeta").textContent = "돌아가신 날 " + fmt(dod) + " 기준";
+    } else { tb.hidden = true; $("#dlMeta").textContent = "날짜를 넣으면 계산됩니다"; }
+
+    // deadlines
+    var dlBox = $("#deadlines"); dlBox.innerHTML = "";
+    var dlMap = {};
+    DEADLINES.forEach(function (dl) {
+      var el = document.createElement("div"); el.className = "card dl";
+      if (!dod) {
+        el.classList.add("empty"); el.innerHTML = '<div class="name">' + dl.name + '</div><div class="why">' + dl.why + '</div>';
+      } else {
+        var due = dl.calc(dod), left = daysBetween(today, due);
+        var doneFlag = !!state.done[dl.doneKey];
+        var st = stateFor(left, doneFlag); el.dataset.state = st;
+        dlMap[dl.id] = { due: due, left: left, st: st };
+        el.innerHTML = '<div class="name">' + dl.name + '</div><div class="date">' + fmt(due) + '까지</div><span class="left">' + (doneFlag ? "완료" : leftLabel(left)) + '</span><div class="why">' + dl.why + '</div>';
+      }
+      dlBox.appendChild(el);
+    });
+
+    // periods
+    var box = $("#periods"); box.innerHTML = "";
+    var total = 0, done = 0;
+    PERIODS.forEach(function (p) {
+      var sec = document.createElement("section"); sec.className = "period";
+      var range = dod ? fmt(addDays(dod, p.from)) + " – " + fmt(addDays(dod, p.to)) : "D+" + p.from + " – D+" + p.to;
+      sec.innerHTML = '<h3>' + p.title + ' <span class="range">' + range + '</span></h3><p class="note">' + p.note + '</p>';
+      var list = document.createElement("div"); list.className = "items";
+      p.items.forEach(function (it) {
+        total++; var isDone = !!state.done[it.id]; if (isDone) done++;
+        var el = document.createElement("div"); el.className = "card item" + (isDone ? " done" : "");
+        var tags = '<span class="tag ' + (it.who === "pro" ? "who-pro" : "who-self") + '">' + (it.who === "pro" ? (it.pt ? it.pt + "와 함께" : "전문가와 함께") : "직접 할 수 있음") + '</span>';
+        if (it.dl && dlMap[it.dl] && !isDone) { var d = dlMap[it.dl]; tags += '<span class="tag due ' + d.st + '">' + fmt(d.due) + '까지 · ' + leftLabel(d.left) + '</span>'; }
+        else if (it.dl && !dod) { tags += '<span class="tag">기한 있음</span>'; }
+        var docs = it.docs ? '<details><summary>필요한 것</summary><ul class="docs">' + it.docs.map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></details>' : "";
+        el.innerHTML = '<input type="checkbox" id="chk-' + it.id + '"' + (isDone ? " checked" : "") + '><div><label class="title" for="chk-' + it.id + '">' + it.t + '</label><div class="tags">' + tags + '</div>' + docs + '</div>';
+        el.querySelector("input").addEventListener("change", function (e) { state.done[it.id] = e.target.checked; save(); render(); });
+        list.appendChild(el);
+      });
+      sec.appendChild(list); box.appendChild(sec);
+    });
+    var pct = total ? Math.round(done / total * 100) : 0;
+    $("#fill").style.width = pct + "%";
+    $("#progTxt").textContent = done + " / " + total + " 완료";
+    $("#progPct").textContent = pct + "%";
+  }
+  render();
+})();
+</script>
+</body>
+</html>
